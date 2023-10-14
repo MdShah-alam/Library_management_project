@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div style="width:50%; margin:auto;">
+  <h1>This is show book page </h1>
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">isbn</th>
+          <th scope="col">authore</th>
+          <th scope="col">category</th>
+          <th scope="col">count</th>
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for bk in data %}
+            <tr>
+              <th scope="row">{{bk.isbn}}</th>
+              <td>{{bk.author}}</td>
+              <td>{{bk.category}}</td>
+              <td>{{bk.count}}</td>
+              <td><small><a href="{% url 'borrowpage' id=bk.isbn %}" class="btn btn-outline-warning text-dark" >borrow</a>
+                <a href="{% url 'returnpage' id=bk.isbn %}" class="btn btn-outline-warning text-dark" >retrun</a></small></td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+

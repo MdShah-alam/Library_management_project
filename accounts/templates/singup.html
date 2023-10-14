@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% if messages %}
+{% for m in messages %}
+<small {% if m.tags %} class="{{m.tags}}"{% endif %}><h1>{{m}}</h1></small>
+{% endfor %}
+{% endif %}
+
+{% block body %}
+<div>
+    <form method="post" style="width:50% ; margin:auto" novalidate>
+      <h2>Welcome to SingUp page ...  </h2>
+      {% csrf_token %}
+      <!-- {{ form|crispy }} -->
+      {% for fm in form %}
+        {{fm.label_tag}}
+        {{fm}}
+        {{fm.errors|striptags}}
+      {% endfor %}
+      <br/>
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <br/>
+      <h5>already have an account....
+        <a href="{% url 'loginpage' %}" class=" text-black"><b>LogIn</b></a></h5>
+    </form>
+</div>
+{% endblock %}
